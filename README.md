@@ -8,3 +8,9 @@ Data is given in the following units:
   - Temperature [0.1K]
   - Current [mA]
   - Device Capacity [mAh]
+
+# Running on AM437X
+
+![ Command Line ](/img/1.PNG)
+
+

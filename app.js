@@ -31,7 +31,7 @@ wire.readBytes(0xC0, 32, function(err, res) {
   }
 
   total = total % 256;
-  console.log(total.toString(16));
+  //console.log(total.toString(16));
   // result contains a buffer of bytes 
 });
 
@@ -46,30 +46,40 @@ wire.writeBytes(0x00, [0x20, 0x00], function(err) {});
 
 /* Read voltage register 0x04 | 0x80 */
 wire.readBytes(0x84, 2, function(err, res) {
-  console.log(res);
+  var voltage = 0;
+  voltage = res[0] + res[1] * 256;
+  console.log("Voltage: ",voltage , "[mV]");
   // result contains a buffer of bytes 
 });
 
 /* Read temperature register 0x02 | 0x80 */
 wire.readBytes(0x82, 2, function(err, res) {
-  console.log(res);
+  var temp = 0;
+  temp = ((res[0] + res[1] * 256) - 273) / 100;
+  console.log("Temperature: ",temp, "[C]");
   // result contains a buffer of bytes 
 });
 
 /* Read current register 0x10 | 0x80 */
 wire.readBytes(0x90, 2, function(err, res) {
-  console.log(res);
+  var current = 0;
+  current = res[0] + res[1] * 256;
+  console.log("Current: ",current , "[mA]");
   // result contains a buffer of bytes 
 });
 
 /* Read device capacity register 0x4A | 0x80 */
 wire.readBytes(0xCA, 2, function(err, res) {
-  console.log(res);
+  var devCapacity = 0;
+  devCapacity = res[1] + res[0] * 256;
+  console.log("Device Capacity: ",devCapacity , "[mAh]");
   // result contains a buffer of bytes 
 });
 
-/* Read device capacity register 0x0C | 0x80 */
+/* Read remaining capacity register 0x0C | 0x80 */
 wire.readBytes(0x8C, 2, function(err, res) {
-  console.log(res);
+  var remainingCapacity = 0;
+  remainingCapacity = res[0] + res[1] * 256;
+  console.log("Remaining Capacity: ",remainingCapacity , "[mAh]");
   // result contains a buffer of bytes 
 });
